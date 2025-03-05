@@ -7,7 +7,6 @@ import { getTodos } from './api/todos';
 import { Todo } from './types/Todo';
 import { ErrorType } from './types/Error';
 import { FilterType } from './types/FilterType';
-// import { Header } from './components/Header/Header';
 import { TodoList } from './components/TodoList/TodoList';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
@@ -34,10 +33,6 @@ export const App: React.FC = () => {
       })
   }, []);
 
-  // const handleSubmit = (event: FormEvent) => {
-  //     event.preventDefault();
-  //   };
-
   const clearCompleted = () => {
     setTodos(todos.filter(todo => !todo.completed));
   };
@@ -51,7 +46,7 @@ export const App: React.FC = () => {
       <Header todos={todos}/>
 
         <TodoList todos={todos} filterBy={filterBy} />
-        {todos.length > 0 && <Footer setFilterBy={setFilterBy} filterBy={ filterBy} todos={todos} error={error} setError={setError} clearCompleted={clearCompleted}/>}
+        {todos.length > 0 && <Footer setFilterBy={setFilterBy} filterBy={filterBy} todos={todos} error={error} clearCompleted={clearCompleted} setError={setError} />}
 
       </div>
 

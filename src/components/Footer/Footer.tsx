@@ -11,12 +11,13 @@ interface Props {
   filterBy: FilterType;
   setFilterBy: (filter: FilterType) => void;
   error: ErrorType | null;
-  setError: (error: ErrorType | null) => void;
   clearCompleted: () => void;
+  setError: (error: ErrorType | null) => void;
+
 }
 
 
-export const Footer: React.FC<Props> = ({ todos, filterBy, setFilterBy, error, setError, clearCompleted }) => {
+export const Footer: React.FC<Props> = ({ todos, filterBy, setFilterBy, error, clearCompleted, setError }) => {
   const activeTodos = todos.filter(todo => !todo.completed);
   const completedTodos = todos.filter(todo => todo.completed);
 
@@ -24,13 +25,6 @@ export const Footer: React.FC<Props> = ({ todos, filterBy, setFilterBy, error, s
     event.preventDefault();
     setFilterBy(filter);
   }
-
-  const handleHideError = () => {
-    setError(null);
-  };
-
-
-
 
   return (
     <footer className="todoapp__footer" data-cy="Footer">
@@ -73,27 +67,24 @@ export const Footer: React.FC<Props> = ({ todos, filterBy, setFilterBy, error, s
         type="button"
         className="todoapp__clear-completed"
         data-cy="ClearCompletedButton"
-        disabled={completedTodos.length === 0}
+        disabled={!completedTodos}
         onClick={clearCompleted}
       >
         Clear completed
       </button>
 
-    {/* this button should be disabled if there are no completed todos */}
-    {error && (
         <div
-          data-cy="ErrorNotification"
-          className="notification is-danger is-light has-text-weight-normal"
+        data-cy="ErrorNotification"
+        className={cs("notification is-danger is-light has-text-weight-normal", {hidden: !error}, )}
         >
           <button
             data-cy="HideErrorButton"
             type="button"
-            className="delete"
-            onClick={handleHideError}
+          className="delete"
+          onClick={() => setError(null)}
           />
           {error}
         </div>
-      )}
   </footer>
   )
 }
