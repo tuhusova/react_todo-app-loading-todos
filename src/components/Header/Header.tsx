@@ -35,6 +35,7 @@ export const Header: React.FC<Props> = ({ todos }) => {
           type="text"
           className="todoapp__new-todo"
           placeholder="What needs to be done?"
+          autoFocus
         />
       </form>
     </header>
