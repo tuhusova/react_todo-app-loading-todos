@@ -20,7 +20,6 @@ export const App: React.FC = () => {
   const [error, setError] = useState<ErrorType | null>(null);
   const [filterBy, setFilterBy] = useState<FilterType>(FilterType.All);
 
-
   useEffect(() => {
     getTodos()
       .then(data => setTodos(data))
@@ -30,26 +29,31 @@ export const App: React.FC = () => {
         window.setTimeout(() => {
           setError(null);
         }, 3000);
-      })
+      });
   }, []);
 
   const clearCompleted = () => {
     setTodos(todos.filter(todo => !todo.completed));
   };
 
-
-
   return (
     <div className="todoapp">
       <h1 className="todoapp__title">todos</h1>
       <div className="todoapp__content">
-      <Header todos={todos}/>
+        <Header todos={todos} />
 
         <TodoList todos={todos} filterBy={filterBy} />
-        {todos.length > 0 && <Footer setFilterBy={setFilterBy} filterBy={filterBy} todos={todos} error={error} clearCompleted={clearCompleted} setError={setError} />}
-
+        {todos.length > 0 && (
+          <Footer
+            setFilterBy={setFilterBy}
+            filterBy={filterBy}
+            todos={todos}
+            error={error}
+            clearCompleted={clearCompleted}
+            setError={setError}
+          />
+        )}
       </div>
-
     </div>
   );
 };

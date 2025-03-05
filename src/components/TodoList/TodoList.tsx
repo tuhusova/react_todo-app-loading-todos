@@ -3,8 +3,8 @@ import { TodoItem } from './../TodoItem/TodoItem';
 import { Todo } from '../../types/Todo';
 
 interface Props {
-  filterBy: FilterType,
-  todos: Todo[],
+  filterBy: FilterType;
+  todos: Todo[];
 }
 
 export const TodoList: React.FC<Props> = ({ filterBy, todos }) => {
@@ -21,12 +21,12 @@ export const TodoList: React.FC<Props> = ({ filterBy, todos }) => {
   const renderTodos = (filteredTodos: Todo[]) => {
     return filteredTodos.map((todo: Todo) => (
       <TodoItem key={todo.id} title={todo.title} completed={todo.completed} />
-    ))
-  }
+    ));
+  };
 
   return (
     <section className="todoapp__main" data-cy="TodoList">
       {renderTodos(filteredTodos)}
     </section>
-  )
-}
+  );
+};
