@@ -1,13 +1,11 @@
 import { FilterType } from '../../types/FilterType';
 import { Todo } from '../../types/Todo';
 import cs from 'classnames';
-import { ErrorType } from '../../types/Error';
 
 interface Props {
   todos: Todo[];
   filterBy: FilterType;
   setFilterBy: (filter: FilterType) => void;
-  error: ErrorType | null;
   clearCompleted: () => void;
 }
 
@@ -15,7 +13,6 @@ export const Footer: React.FC<Props> = ({
   todos,
   filterBy,
   setFilterBy,
-  error,
   clearCompleted,
 }) => {
   const activeTodos = todos.filter(todo => !todo.completed);

@@ -50,7 +50,6 @@ export const App: React.FC = () => {
             setFilterBy={setFilterBy}
             filterBy={filterBy}
             todos={todos}
-            error={error}
             clearCompleted={clearCompleted}
           />
         )}
