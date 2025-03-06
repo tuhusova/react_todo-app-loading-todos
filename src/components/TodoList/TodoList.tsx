@@ -8,6 +8,7 @@ interface Props {
 }
 
 export const TodoList: React.FC<Props> = ({ filterBy, todos }) => {
+
   const filteredTodos = todos.filter(todo => {
     if (filterBy === 'active') {
       return !todo.completed;
@@ -18,15 +19,12 @@ export const TodoList: React.FC<Props> = ({ filterBy, todos }) => {
     }
   });
 
-  const renderTodos = (filteredTodos: Todo[]) => {
-    return filteredTodos.map((todo: Todo) => (
-      <TodoItem key={todo.id} title={todo.title} completed={todo.completed} />
-    ));
-  };
 
   return (
     <section className="todoapp__main" data-cy="TodoList">
-      {renderTodos(filteredTodos)}
+      {filteredTodos.map((todo: Todo) => (
+      <TodoItem key={todo.id} title={todo.title} completed={todo.completed} />
+    ))}
     </section>
   );
 };

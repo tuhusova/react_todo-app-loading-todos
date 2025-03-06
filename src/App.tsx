@@ -12,9 +12,6 @@ import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
 
 export const App: React.FC = () => {
-  if (!USER_ID) {
-    return <UserWarning />;
-  }
 
   const [todos, setTodos] = useState<Todo[]>([]);
   const [error, setError] = useState<ErrorType | null>(null);
@@ -31,6 +28,10 @@ export const App: React.FC = () => {
         }, 3000);
       });
   }, []);
+
+  if (!USER_ID) {
+    return <UserWarning />;
+  }
 
   const clearCompleted = () => {
     setTodos(todos.filter(todo => !todo.completed));
