@@ -12,7 +12,6 @@ import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
 
 export const App: React.FC = () => {
-
   const [todos, setTodos] = useState<Todo[]>([]);
   const [error, setError] = useState<ErrorType | null>(null);
   const [filterBy, setFilterBy] = useState<FilterType>(FilterType.All);

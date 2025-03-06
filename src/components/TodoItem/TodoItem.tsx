@@ -6,10 +6,12 @@ interface Props {
 }
 
 export const TodoItem: React.FC<Props> = ({ title, completed }) => {
+  const inputId = `todo-checkbox-${title}`;
   return (
     <div data-cy="Todo" className={cs('todo', { completed: completed })}>
-      <label className="todo__status-label">
+      <label className="todo__status-label" htmlFor={inputId}>
         <input
+          id={inputId}
           data-cy="TodoStatus"
           type="checkbox"
           className="todo__status"
