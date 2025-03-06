@@ -10,6 +10,8 @@ import { FilterType } from './types/FilterType';
 import { TodoList } from './components/TodoList/TodoList';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
+import cs from 'classnames';
+
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -50,9 +52,24 @@ export const App: React.FC = () => {
             todos={todos}
             error={error}
             clearCompleted={clearCompleted}
-            setError={setError}
           />
         )}
+      </div>
+      <div
+        data-cy="ErrorNotification"
+        className={cs(
+          'notification is-danger is-light has-text-weight-normal',
+          {
+            hidden: !error,
+          },
+        )}
+      >
+        <button data-cy="HideErrorButton" type="button" className="delete" />
+        {/* show only one message at a time */}
+        <div>
+          {error}
+          <br />
+        </div>
       </div>
     </div>
   );

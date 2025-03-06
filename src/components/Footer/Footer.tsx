@@ -9,7 +9,6 @@ interface Props {
   setFilterBy: (filter: FilterType) => void;
   error: ErrorType | null;
   clearCompleted: () => void;
-  setError: (error: ErrorType | null) => void;
 }
 
 export const Footer: React.FC<Props> = ({
@@ -18,7 +17,6 @@ export const Footer: React.FC<Props> = ({
   setFilterBy,
   error,
   clearCompleted,
-  setError,
 }) => {
   const activeTodos = todos.filter(todo => !todo.completed);
   const completedTodos = todos.filter(todo => todo.completed);
@@ -75,22 +73,6 @@ export const Footer: React.FC<Props> = ({
       >
         Clear completed
       </button>
-
-      <div
-        data-cy="ErrorNotification"
-        className={cs(
-          'notification is-danger is-light has-text-weight-normal',
-          { hidden: !error },
-        )}
-      >
-        <button
-          data-cy="HideErrorButton"
-          type="button"
-          className="delete"
-          onClick={() => setError(null)}
-        />
-        {error}
-      </div>
     </footer>
   );
 };
